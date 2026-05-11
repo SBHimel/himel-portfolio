@@ -4,6 +4,17 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGsap } from "@/hooks/useGsap";
 import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { LinkedinIcon, TwitterIcon, InstagramIcon, FacebookIcon, GithubIcon } from "./Icons";
+import { motion } from "framer-motion";
+
+const socialLinks = [
+  { name: "GitHub", icon: GithubIcon, href: "https://github.com/SBHimel" },
+  { name: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/in/sbhimel/" },
+  { name: "X (Twitter)", icon: TwitterIcon, href: "https://x.com/himel2nd" },
+  { name: "Instagram", icon: InstagramIcon, href: "https://www.instagram.com/s.b.himel3/" },
+  { name: "Facebook", icon: FacebookIcon, href: "https://www.facebook.com/s.b.himel.669113" },
+];
+
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +49,17 @@ export default function Contact() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center gap-6 group">
+              <a href="tel:+8801840385793" className="flex items-center gap-6 group w-fit">
+                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm font-mono uppercase">Phone</p>
+                  <p className="text-white text-lg">+8801840385793</p>
+                </div>
+              </a>
+
+              <a href="mailto:s.b.himel21@gmail.com" className="flex items-center gap-6 group w-fit">
                 <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
                   <Mail size={24} />
                 </div>
@@ -46,7 +67,8 @@ export default function Contact() {
                   <p className="text-white/60 text-sm font-mono uppercase">Email</p>
                   <p className="text-white text-lg">s.b.himel21@gmail.com</p>
                 </div>
-              </div>
+              </a>
+
               <div className="flex items-center gap-6 group">
                 <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
                   <MapPin size={24} />
@@ -55,6 +77,51 @@ export default function Contact() {
                   <p className="text-white/60 text-sm font-mono uppercase">Location</p>
                   <p className="text-white text-lg">Brahmanbaria, Bangladesh</p>
                 </div>
+              </div>
+
+              <div className="pt-6 flex flex-wrap gap-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative group flex items-center justify-center w-12 h-12 rounded-xl glass text-white/70 overflow-visible"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: 0.2 + index * 0.1,
+                      ease: "easeOut"
+                    }}
+                    whileHover={{ 
+                      scale: 1.2,
+                      color: "#ff6b00",
+                      boxShadow: "0 0 25px rgba(255, 107, 0, 0.4)",
+                    }}
+                  >
+                    <social.icon size={24} className="relative z-10" />
+                    
+                    {/* Floating Animation */}
+                    <motion.div
+                      className="absolute inset-0 pointer-events-none"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: index * 0.2
+                      }}
+                    />
+
+                    {/* Tooltip */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-neutral-900 border border-white/10 text-white text-[10px] font-mono uppercase tracking-wider rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none translate-y-2 group-hover:translate-y-0 shadow-2xl z-50 whitespace-nowrap">
+                      {social.name}
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-900 border-r border-b border-white/10 rotate-45" />
+                    </div>
+                  </motion.a>
+                ))}
               </div>
             </div>
           </div>
