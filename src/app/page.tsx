@@ -9,10 +9,14 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import RocketAnimation from "@/components/RocketAnimation";
+import RainBackground from "@/components/RainBackground";
+import GlowBackground from "@/components/GlowBackground";
 
 export default function Home() {
   return (
     <main className="min-h-screen relative overflow-hidden bg-background">
+      <GlowBackground />
+      <RainBackground />
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full grid-pattern opacity-20" />
