@@ -11,7 +11,6 @@ const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   useGsap(() => {
     // Cipher Reveal for Name
@@ -46,15 +45,6 @@ const Hero = () => {
       duration: 1,
       delay: 0.8,
       ease: "power3.out",
-    });
-
-    gsap.from(ctaRef.current?.children || [], {
-      opacity: 0,
-      y: 20,
-      stagger: 0.1,
-      duration: 0.8,
-      delay: 1.2,
-      ease: "back.out(1.7)",
     });
   });
 
@@ -148,11 +138,13 @@ const Hero = () => {
         </p>
 
         <div
-          ref={ctaRef}
           className="pt-10 flex flex-col sm:flex-row items-center gap-6"
         >
           <motion.a
-            href="mailto:s.b.himel21@gmail.com"
+            href="#contact-me"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
             whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
@@ -162,9 +154,10 @@ const Hero = () => {
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </motion.a>
           <motion.a
-            href="/Himel_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.3, ease: [0.34, 1.56, 0.64, 1] }}
             whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
