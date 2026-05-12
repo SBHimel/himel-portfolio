@@ -72,12 +72,14 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center glass-nav backdrop-blur-xl border-b border-white/10">
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-white headline-font font-bold text-xl flex items-center gap-1 group">
-            <svg className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
-            </svg>
-            <span>S.B. Himel</span>
-          </Link>
+          <motion.div whileTap={{ scale: 0.95 }}>
+            <Link href="/" className="text-white headline-font font-bold text-xl flex items-center gap-1 group">
+              <svg className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+              </svg>
+              <span>S.B. Himel</span>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Desktop Links */}
@@ -99,12 +101,13 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile Toggle */}
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-white p-2 glass rounded-lg"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        </motion.button>
       </div>
     </nav>
 
@@ -123,6 +126,7 @@ const Navbar = () => {
                   key={item.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  whileTap={{ scale: 0.9 }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <Link

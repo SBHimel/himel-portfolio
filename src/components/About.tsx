@@ -31,11 +31,11 @@ export default function About() {
   });
 
   return (
-    <section id="about-me" ref={sectionRef} className="py-32 px-10 md:px-20 relative overflow-hidden">
+    <section id="about-me" ref={sectionRef} className="py-20 lg:py-32 px-6 md:px-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 space-y-10">
-            <h2 className="headline-font text-4xl md:text-6xl font-bold text-white">
+            <h2 className="headline-font text-3xl md:text-6xl font-bold text-white">
               Passion fuels <br />
               <span className="text-secondary">purpose.</span>
             </h2>
@@ -47,7 +47,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-8 pt-10 border-t border-white/10">
               <div>
                 <h4 className="text-secondary font-mono text-sm uppercase mb-2">Location</h4>
-                <p className="text-white text-lg font-medium">Indore, India</p>
+                <p className="text-white text-lg font-medium">Brahmanbaria, Bangladesh</p>
               </div>
               <div>
                 <h4 className="text-secondary font-mono text-sm uppercase mb-2">Role</h4>

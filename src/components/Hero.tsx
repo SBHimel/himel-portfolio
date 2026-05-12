@@ -59,6 +59,7 @@ const Hero = () => {
   });
 
   const handleMagnetic = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const btn = e.currentTarget;
     const rect = btn.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -82,6 +83,7 @@ const Hero = () => {
   };
 
   const handleNameMagnetic = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const name = e.currentTarget;
     const rect = name.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -128,7 +130,7 @@ const Hero = () => {
             onMouseLeave={resetNameMagnetic}
             className="inline-block cursor-default select-none"
           >
-            <h1 className="name-reveal headline-font text-7xl md:text-9xl lg:text-[11rem] font-black tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D00] to-[#A855F7] drop-shadow-sm">
+            <h1 className="name-reveal headline-font text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-black tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D00] to-[#A855F7] drop-shadow-sm">
               S.B. Himel
             </h1>
           </div>
@@ -136,7 +138,7 @@ const Hero = () => {
 
         <p
           ref={subtitleRef}
-          className="text-on-surface-variant text-xl md:text-3xl font-light leading-relaxed max-w-2xl pt-4"
+          className="text-on-surface-variant text-lg md:text-3xl font-light leading-relaxed max-w-2xl pt-4"
         >
           Building the next generation of{" "}
           <span className="text-white font-medium border-b-2 border-secondary/30">
@@ -149,24 +151,26 @@ const Hero = () => {
           ref={ctaRef}
           className="pt-10 flex flex-col sm:flex-row items-center gap-6"
         >
-          <a
+          <motion.a
             href="#projects"
+            whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
             className="w-full sm:w-auto bg-secondary text-white headline-font font-bold px-12 py-5 rounded-lg hover:brightness-110 transition-all duration-300 shadow-2xl shadow-secondary/20 text-center relative overflow-hidden group"
           >
             <span className="relative z-10">View Projects</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#contact-me"
+            whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
             className="w-full sm:w-auto glass text-white headline-font font-semibold px-12 py-5 rounded-lg hover:bg-white/5 transition-all duration-300 border-white/10 text-center relative overflow-hidden group"
           >
             <span className="relative z-10">Contact Me</span>
             <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </a>
+          </motion.a>
         </div>
       </div>
     </div>

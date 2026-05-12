@@ -59,18 +59,18 @@ export default function Experience() {
   });
 
   return (
-    <section id="experience" className="py-32 px-10 md:px-20 relative bg-black/10">
+    <section id="experience" className="py-20 lg:py-32 px-6 md:px-20 relative bg-black/10">
       <div className="max-w-5xl mx-auto">
-        <h2 className="headline-font text-4xl md:text-6xl font-bold text-white mb-20 text-center">
+        <h2 className="headline-font text-3xl md:text-6xl font-bold text-white mb-12 md:mb-20 text-center">
           Career <span className="text-secondary">Path</span>
         </h2>
 
         <div ref={containerRef} className="relative pl-8 md:pl-0">
           {/* Vertical Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block" />
-          <div ref={lineRef} className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-secondary -translate-x-1/2 hidden md:block" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+          <div ref={lineRef} className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-secondary -translate-x-1/2" />
 
-          <div className="space-y-24">
+          <div className="space-y-12 md:space-y-24">
             {experiences.map((exp, i) => (
               <div key={i} className={`exp-item flex flex-col md:flex-row items-center gap-10 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
                 <div className="hidden md:block w-1/2" />

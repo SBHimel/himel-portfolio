@@ -63,18 +63,19 @@ const SocialSidebar = () => {
     <aside ref={containerRef} className="lg:col-span-1 hidden lg:flex flex-col items-center justify-center border-r border-white/5 pb-20">
       <div className="flex flex-col gap-8">
         {socials.map((social) => (
-          <a
+          <motion.a
             key={social.label}
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
+            whileTap={{ scale: 0.8 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
             className="text-on-surface-variant hover:text-secondary transition-colors p-2"
             aria-label={social.label}
           >
             <social.icon size={24} />
-          </a>
+          </motion.a>
         ))}
         <div
           ref={lineRef}

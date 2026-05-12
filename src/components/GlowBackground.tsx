@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useOrientation } from "@/hooks/useOrientation";
 
 export default function GlowBackground() {
+  const { beta, gamma } = useOrientation();
+
+  // Subtle shift based on tilt: gamma for X, beta for Y
+  const translateX = gamma * 0.5; // range ~ -45 to 45px
+  const translateY = beta * 0.5;  // range ~ -90 to 90px
+
   return (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
       {/* Left Edge Glow */}
@@ -16,11 +23,15 @@ export default function GlowBackground() {
           ],
           opacity: [0.4, 0.7, 0.4],
           scale: [1, 1.2, 1],
+          x: translateX,
+          y: translateY,
         }}
         transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
+          backgroundColor: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          opacity: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          scale: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          x: { type: "spring", stiffness: 50, damping: 20 },
+          y: { type: "spring", stiffness: 50, damping: 20 },
         }}
       />
       
@@ -35,12 +46,15 @@ export default function GlowBackground() {
           ],
           opacity: [0.4, 0.7, 0.4],
           scale: [1, 1.2, 1],
+          x: -translateX,
+          y: -translateY,
         }}
         transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
+          backgroundColor: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 },
+          opacity: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 },
+          scale: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 },
+          x: { type: "spring", stiffness: 50, damping: 20 },
+          y: { type: "spring", stiffness: 50, damping: 20 },
         }}
       />
 
@@ -55,13 +69,16 @@ export default function GlowBackground() {
           ],
           opacity: [0.5, 0.8, 0.5],
           scaleY: [1, 1.3, 1],
+          y: translateY * 0.8,
         }}
         transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
+          backgroundColor: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+          opacity: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+          scaleY: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+          y: { type: "spring", stiffness: 50, damping: 20 },
         }}
       />
     </div>
   );
 }
+

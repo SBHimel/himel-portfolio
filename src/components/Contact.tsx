@@ -34,12 +34,12 @@ export default function Contact() {
   });
 
   return (
-    <section id="contact-me" className="py-32 px-10 md:px-20 relative overflow-hidden">
+    <section id="contact-me" className="py-20 lg:py-32 px-6 md:px-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             <div>
-              <h2 className="headline-font text-4xl md:text-6xl font-bold text-white mb-6">
+              <h2 className="headline-font text-3xl md:text-6xl font-bold text-white mb-6">
                 Let's build <br />
                 <span className="text-secondary">something great.</span>
               </h2>
@@ -49,7 +49,11 @@ export default function Contact() {
             </div>
 
             <div className="space-y-6">
-              <a href="tel:+8801840385793" className="flex items-center gap-6 group w-fit">
+              <motion.a 
+                href="tel:+8801840385793" 
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-6 group w-fit"
+              >
                 <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
                   <Phone size={24} />
                 </div>
@@ -57,9 +61,13 @@ export default function Contact() {
                   <p className="text-white/60 text-sm font-mono uppercase">Phone</p>
                   <p className="text-white text-lg">+8801840385793</p>
                 </div>
-              </a>
+              </motion.a>
 
-              <a href="mailto:s.b.himel21@gmail.com" className="flex items-center gap-6 group w-fit">
+              <motion.a 
+                href="mailto:s.b.himel21@gmail.com" 
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-6 group w-fit"
+              >
                 <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
                   <Mail size={24} />
                 </div>
@@ -67,7 +75,7 @@ export default function Contact() {
                   <p className="text-white/60 text-sm font-mono uppercase">Email</p>
                   <p className="text-white text-lg">s.b.himel21@gmail.com</p>
                 </div>
-              </a>
+              </motion.a>
 
               <div className="flex items-center gap-6 group">
                 <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
@@ -100,6 +108,7 @@ export default function Contact() {
                       color: "#ff6b00",
                       boxShadow: "0 0 25px rgba(255, 107, 0, 0.4)",
                     }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <social.icon size={24} className="relative z-10" />
                     
@@ -148,9 +157,12 @@ export default function Contact() {
                 <label className="text-sm font-mono text-white/60 uppercase">Message</label>
                 <textarea rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors resize-none" placeholder="How can I help you?"></textarea>
               </div>
-              <button className="w-full bg-secondary text-white headline-font font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:brightness-110 transition-all shadow-xl shadow-secondary/20 group">
+              <motion.button 
+                whileTap={{ scale: 0.95 }}
+                className="w-full bg-secondary text-white headline-font font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:brightness-110 transition-all shadow-xl shadow-secondary/20 group"
+              >
                 Send Message <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
+              </motion.button>
             </form>
           </div>
         </div>

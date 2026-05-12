@@ -77,11 +77,11 @@ export default function Projects() {
   const visibleProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
-    <section id="projects" className="py-32 px-6 relative">
+    <section id="projects" className="py-20 lg:py-32 px-6 md:px-20 relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 px-4">
           <div className="space-y-4 text-center md:text-left">
-            <h2 className="headline-font text-5xl md:text-7xl font-bold text-white tracking-tighter">
+            <h2 className="headline-font text-4xl md:text-7xl font-bold text-white tracking-tighter">
               Selected <span className="text-secondary drop-shadow-[0_0_20px_rgba(249,115,22,0.3)]">Works</span>
             </h2>
             <p className="text-on-surface-variant text-xl max-w-xl font-light">
@@ -89,7 +89,8 @@ export default function Projects() {
             </p>
           </div>
           
-          <button 
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
             onClick={() => setShowAll(!showAll)}
             className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-full text-white headline-font text-sm uppercase tracking-widest overflow-hidden transition-all hover:border-secondary/50"
           >
@@ -97,12 +98,12 @@ export default function Projects() {
               {showAll ? "Show Less" : "View All Projects"}
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-secondary to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity" />
-          </button>
+          </motion.button>
         </div>
 
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
         >
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project, index) => (
@@ -112,7 +113,8 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="group flex flex-col gap-6"
+                whileTap={{ scale: 0.98 }}
+                className="group flex flex-col gap-6 cursor-pointer"
               >
                 {/* Image Container with Glow */}
                 <div className="relative aspect-[16/9] overflow-hidden rounded-[2.5rem] p-px bg-gradient-to-br from-white/10 to-transparent transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(249,115,22,0.15)] group-hover:from-secondary/30 group-hover:to-purple-500/30">
@@ -159,18 +161,19 @@ export default function Projects() {
                       ))}
                     </div>
                     
-                    <a 
+                    <motion.a 
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative p-[1px] rounded-full bg-gradient-to-r from-secondary/50 to-purple-500/50 group/btn transition-all hover:scale-105 active:scale-95"
+                      whileTap={{ scale: 0.9 }}
+                      className="relative p-[1px] rounded-full bg-gradient-to-r from-secondary/50 to-purple-500/50 group/btn transition-all hover:scale-105"
                     >
                       <div className="relative px-6 py-2.5 rounded-full bg-background transition-all group-hover/btn:bg-transparent">
                         <span className="relative z-10 text-xs font-bold text-white flex items-center gap-2">
                           Live Preview <ArrowUpRight size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                         </span>
                       </div>
-                    </a>
+                    </motion.a>
                   </motion.div>
                 </div>
               </motion.div>

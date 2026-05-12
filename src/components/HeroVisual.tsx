@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useOrientation } from "@/hooks/useOrientation";
 import gsap from "gsap";
 import { useGsap } from "@/hooks/useGsap";
 import Image from "next/image";
@@ -20,6 +21,11 @@ const HeroVisual = () => {
   const frame2Ref = useRef<HTMLDivElement>(null);
   
   const [roleIndex, setRoleIndex] = useState(0);
+  const { beta, gamma } = useOrientation();
+
+  // Parallax offsets
+  const frameX = gamma * 0.8;
+  const frameY = beta * 0.8;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,7 +55,7 @@ const HeroVisual = () => {
   });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || window.matchMedia("(pointer: coarse)").matches) return;
     const { clientX, clientY } = e;
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
     const x = (clientX - left) / width - 0.5;
@@ -73,11 +79,11 @@ const HeroVisual = () => {
   };
 
   return (
-    <div ref={containerRef} className="lg:col-span-4 flex items-center justify-center relative z-[50] p-10 lg:p-0">
+    <div ref={containerRef} className="lg:col-span-4 flex items-center justify-center relative z-[50] p-4 lg:p-0">
       <div className="flex items-center gap-4">
         {/* Vertical Identity Bar */}
-        <div className="hidden md:flex flex-col h-[320px] md:h-[480px] py-4 border-l border-white/10 pl-4 justify-center">
-          <div className="[writing-mode:vertical-rl] rotate-180 flex items-center gap-2 text-on-surface-variant font-mono text-[20px] uppercase tracking-[0.2em] whitespace-nowrap">
+        <div className="flex flex-col h-[280px] md:h-[480px] py-4 border-l border-white/10 pl-2 md:pl-4 justify-center flex-shrink-0">
+          <div className="[writing-mode:vertical-rl] rotate-180 flex items-center gap-2 text-on-surface-variant font-mono text-[12px] md:text-[20px] uppercase tracking-[0.2em] whitespace-nowrap">
             <span>I am a</span>
             <AnimatePresence mode="wait">
               <motion.span
@@ -96,12 +102,16 @@ const HeroVisual = () => {
 
         <div className="relative group" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           {/* Tech-inspired Geometric Frames */}
-          <div
+          <motion.div
             ref={frame1Ref}
+            animate={{ x: frameX, y: frameY }}
+            transition={{ type: "spring", stiffness: 100, damping: 30 }}
             className="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-secondary/40 rounded-tl-3xl transition-all duration-500 group-hover:-top-12 group-hover:-left-12"
           />
-          <div
+          <motion.div
             ref={frame2Ref}
+            animate={{ x: -frameX, y: -frameY }}
+            transition={{ type: "spring", stiffness: 100, damping: 30 }}
             className="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-purple-500/40 rounded-br-3xl transition-all duration-500 group-hover:-bottom-12 group-hover:-right-12"
           />
 

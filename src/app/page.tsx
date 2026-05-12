@@ -29,7 +29,7 @@ export default function Home() {
       
       <div className="relative z-10">
         {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center pt-32 lg:pt-20 relative overflow-hidden">
+        <section id="home" className="min-h-screen flex items-center justify-center pt-24 lg:pt-20 relative overflow-hidden">
           <RocketAnimation />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
             <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-10 items-center">
