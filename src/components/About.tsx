@@ -40,9 +40,9 @@ export default function About() {
               <span className="text-secondary">purpose.</span>
             </h2>
             <p ref={textRef} className="text-on-surface-variant text-xl md:text-2xl leading-relaxed font-light">
-              I am a dedicated web designer and front-end developer with a focus on creating immersive digital experiences. 
-              My journey is driven by a blend of technical precision and artistic vision, ensuring every project I touch 
-              is both functional and visually stunning.
+              I am a Computer Technology student and a passionate Full Stack Developer currently mastering Next.js at Programming Hero. My journey started with a love for PC hardware, which eventually led me to the world of coding.
+              <br /><br />
+              I specialize in building clean, functional web applications like &apos;Dragon News&apos;. When I&apos;m not coding, you&apos;ll find me writing poetry (Shayeri) or tinkering with computer components. I believe great software is a blend of technical precision and artistic vision.
             </p>
             <div className="grid grid-cols-2 gap-8 pt-10 border-t border-white/10">
               <div>
