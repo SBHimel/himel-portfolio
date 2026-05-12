@@ -17,14 +17,7 @@ export default function Home() {
     <main className="min-h-screen relative overflow-hidden bg-background">
       <GlowBackground />
       <RainBackground />
-      {/* Dynamic Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full grid-pattern opacity-20" />
-        <div className="cyber-glow -top-[10%] -left-[10%] opacity-30 animate-pulse" />
-        <div className="purple-glow -bottom-[10%] -right-[10%] opacity-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,5,36,1)_80%)]" />
-      </div>
-
+      
       <Navbar />
       
       <div className="relative z-10">

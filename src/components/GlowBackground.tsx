@@ -1,28 +1,36 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useOrientation } from "@/hooks/useOrientation";
 
 export default function GlowBackground() {
   const { beta, gamma } = useOrientation();
+  const { scrollY } = useScroll();
 
   // Subtle shift based on tilt: gamma for X, beta for Y
-  const translateX = gamma * 0.5; // range ~ -45 to 45px
-  const translateY = beta * 0.5;  // range ~ -90 to 90px
+  const translateX = gamma * 0.5;
+  const translateY = beta * 0.5;
+
+  // Scroll-based parallax (Moving faster than scroll for background elements)
+  const bgScrollY = useTransform(scrollY, [0, 1000], [0, -150]);
+  const gridScrollY = useTransform(scrollY, [0, 1000], [0, -50]); // Grid moves slightly faster than content
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
-      {/* Left Edge Glow */}
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Background Grid Pattern with Parallax */}
+      <motion.div 
+        style={{ y: gridScrollY }}
+        className="absolute inset-0 grid-pattern opacity-20"
+      />
+
+      {/* Cyber Sunset Glows with Combined Tilt & Scroll Parallax */}
       <motion.div
         className="absolute -left-[25%] top-0 w-[60%] h-full blur-[120px] md:blur-[200px] rounded-full"
+        style={{ y: bgScrollY }}
         animate={{
-          backgroundColor: [
-            "rgba(249, 115, 22, 0.25)", // Primary Orange
-            "rgba(139, 92, 246, 0.25)", // Soft Purple
-            "rgba(249, 115, 22, 0.25)"
-          ],
-          opacity: [0.4, 0.7, 0.4],
-          scale: [1, 1.2, 1],
+          backgroundColor: ["rgba(249, 115, 22, 0.2)", "rgba(139, 92, 246, 0.2)", "rgba(249, 115, 22, 0.2)"],
+          opacity: [0.4, 0.6, 0.4],
+          scale: [1, 1.1, 1],
           x: translateX,
           y: translateY,
         }}
@@ -35,17 +43,13 @@ export default function GlowBackground() {
         }}
       />
       
-      {/* Right Edge Glow */}
       <motion.div
         className="absolute -right-[25%] top-0 w-[60%] h-full blur-[120px] md:blur-[200px] rounded-full"
+        style={{ y: bgScrollY }}
         animate={{
-          backgroundColor: [
-            "rgba(139, 92, 246, 0.25)", // Soft Purple
-            "rgba(249, 115, 22, 0.25)", // Primary Orange
-            "rgba(139, 92, 246, 0.25)"
-          ],
-          opacity: [0.4, 0.7, 0.4],
-          scale: [1, 1.2, 1],
+          backgroundColor: ["rgba(139, 92, 246, 0.2)", "rgba(249, 115, 22, 0.2)", "rgba(139, 92, 246, 0.2)"],
+          opacity: [0.4, 0.6, 0.4],
+          scale: [1, 1.1, 1],
           x: -translateX,
           y: -translateY,
         }}
@@ -58,27 +62,21 @@ export default function GlowBackground() {
         }}
       />
 
-      {/* Bottom Edge Glow */}
-      <motion.div
-        className="absolute -bottom-[20%] left-0 w-full h-[50%] blur-[150px] md:blur-[250px] rounded-full"
-        animate={{
-          backgroundColor: [
-            "rgba(249, 115, 22, 0.2)",
-            "rgba(139, 92, 246, 0.2)",
-            "rgba(249, 115, 22, 0.2)"
-          ],
-          opacity: [0.5, 0.8, 0.5],
-          scaleY: [1, 1.3, 1],
-          y: translateY * 0.8,
-        }}
-        transition={{
-          backgroundColor: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-          opacity: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-          scaleY: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-          y: { type: "spring", stiffness: 50, damping: 20 },
-        }}
+      {/* Decorative Glows from page.tsx */}
+      <motion.div 
+        style={{ y: useTransform(scrollY, [0, 1000], [0, -300]) }}
+        className="cyber-glow -top-[10%] -left-[10%] opacity-30 animate-pulse" 
       />
+      <motion.div 
+        style={{ y: useTransform(scrollY, [0, 1000], [0, -200]) }}
+        className="purple-glow -bottom-[10%] -right-[10%] opacity-20" 
+      />
+
+      {/* Vignette Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,5,36,1)_80%)]" />
     </div>
   );
 }
+
+
 

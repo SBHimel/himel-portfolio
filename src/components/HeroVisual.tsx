@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useOrientation } from "@/hooks/useOrientation";
 import gsap from "gsap";
 import { useGsap } from "@/hooks/useGsap";
@@ -22,6 +22,9 @@ const HeroVisual = () => {
   
   const [roleIndex, setRoleIndex] = useState(0);
   const { beta, gamma } = useOrientation();
+  
+  const { scrollY } = useScroll();
+  const portraitY = useTransform(scrollY, [0, 500], [0, 50]); // Slower movement (0.1x)
 
   // Parallax offsets
   const frameX = gamma * 0.8;
@@ -30,7 +33,7 @@ const HeroVisual = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -116,10 +119,13 @@ const HeroVisual = () => {
           />
 
           {/* Portrait Container */}
-          <div
+          <motion.div
             ref={cardRef}
+            style={{ 
+              transformStyle: "preserve-3d",
+              y: portraitY
+            }}
             className="relative w-[min(80vw,16rem)] h-[min(100vw,20rem)] md:w-80 md:h-[480px] overflow-hidden rounded-2xl shadow-2xl z-10 perspective-1000"
-            style={{ transformStyle: "preserve-3d" }}
           >
             {/* Background Abstract Tech Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-orange-900/50 opacity-40 z-0" />
@@ -134,10 +140,9 @@ const HeroVisual = () => {
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
-
             {/* Secondary Image Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 pointer-events-none" />
-          </div>
+          </motion.div>
 
           {/* Floating Geometric Element */}
           <motion.div
