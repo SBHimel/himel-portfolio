@@ -156,26 +156,28 @@ export default function Contact() {
           <div className="glass p-10 rounded-3xl border-white/5 relative group">
             <div className="absolute inset-0 bg-secondary/5 blur-[100px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
-            <form className="space-y-8 relative z-10">
+            <form action="https://api.web3forms.com/submit" method="POST" className="space-y-8 relative z-10">
+              <input type="hidden" name="access_key" value="9c8ff722-9b06-4de7-a3f0-3eb18f49c17e" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-sm font-mono text-white/60 uppercase">Full Name</label>
-                  <input type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="Tareq Rahman" />
+                  <input type="text" name="name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="Tareq Rahman" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-mono text-white/60 uppercase">Email Address</label>
-                  <input type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="tareq@example.com" />
+                  <input type="email" name="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="tareq@example.com" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-mono text-white/60 uppercase">Subject</label>
-                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="Project Inquiry" />
+                <input type="text" name="subject" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors" placeholder="Project Inquiry" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-mono text-white/60 uppercase">Message</label>
-                <textarea rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors resize-none" placeholder="How can I help you?"></textarea>
+                <textarea rows={5} name="message" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-secondary/50 transition-colors resize-none" placeholder="How can I help you?"></textarea>
               </div>
               <motion.button 
+                type="submit"
                 whileTap={{ scale: 0.95 }}
                 className="w-full bg-secondary text-white headline-font font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:brightness-110 transition-all shadow-xl shadow-secondary/20 group"
               >
