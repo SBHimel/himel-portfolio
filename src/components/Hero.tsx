@@ -152,23 +152,25 @@ const Hero = () => {
           className="pt-10 flex flex-col sm:flex-row items-center gap-6"
         >
           <motion.a
-            href="#projects"
+            href="mailto:s.b.himel21@gmail.com"
             whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
             className="w-full sm:w-auto bg-secondary text-white headline-font font-bold px-12 py-5 rounded-lg hover:brightness-110 transition-all duration-300 shadow-2xl shadow-secondary/20 text-center relative overflow-hidden group"
           >
-            <span className="relative z-10">View Projects</span>
+            <span className="relative z-10">Hire Me</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </motion.a>
           <motion.a
-            href="#contact-me"
+            href="/Himel_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             whileTap={{ scale: 0.95 }}
             onMouseMove={handleMagnetic}
             onMouseLeave={resetMagnetic}
             className="w-full sm:w-auto glass text-white headline-font font-semibold px-12 py-5 rounded-lg hover:bg-white/5 transition-all duration-300 border-white/10 text-center relative overflow-hidden group"
           >
-            <span className="relative z-10">Contact Me</span>
+            <span className="relative z-10">Download CV</span>
             <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </motion.a>
         </div>

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGsap } from "@/hooks/useGsap";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { LinkedinIcon, TwitterIcon, InstagramIcon, FacebookIcon, GithubIcon } from "./Icons";
 import { motion } from "framer-motion";
 
@@ -64,7 +64,25 @@ export default function Contact() {
               </motion.a>
 
               <motion.a 
+                href="https://wa.me/8801840385793" 
+                target="_blank"
+                rel="noopener noreferrer"
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-6 group w-fit"
+              >
+                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                  <MessageCircle size={24} />
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm font-mono uppercase">WHATSAPP</p>
+                  <p className="text-white text-lg">+880 1840-385793</p>
+                </div>
+              </motion.a>
+
+              <motion.a 
                 href="mailto:s.b.himel21@gmail.com" 
+                target="_blank"
+                rel="noopener noreferrer"
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-6 group w-fit"
               >
